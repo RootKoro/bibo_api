@@ -4,16 +4,17 @@
 const Schema = use('Schema')
 
 class CategorieSchema extends Schema {
-  up () {
-    this.create('categories', (table) => {
-      table.increments()
-      table.timestamps()
-    })
-  }
+    up() {
+        this.create('categories', (table) => {
+            table.increments()
+            table.string('nom_cathegorie', 80).notNullable().unique()
+            table.timestamps()
+        })
+    }
 
-  down () {
-    this.drop('categories')
-  }
+    down() {
+        this.drop('categories')
+    }
 }
 
 module.exports = CategorieSchema

@@ -4,6 +4,13 @@
 const Model = use('Model')
 
 class Categorie extends Model {
+    id = Number()
+
+    nom_categorie = String()
+
+    createdAt = Date()
+
+    updatedAt = Date()
 }
 
 module.exports = Categorie

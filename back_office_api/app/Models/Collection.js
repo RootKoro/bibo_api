@@ -4,6 +4,13 @@
 const Model = use('Model')
 
 class Collection extends Model {
+    id = Number()
+
+    nom_collection = String()
+
+    createdAt = Date()
+
+    updatedAt = Date()
 }
 
 module.exports = Collection
