@@ -4,6 +4,24 @@
 const Model = use('Model')
 
 class Article extends Model {
+    /**
+     * @swagger
+     * definitions:
+     *  Article:
+     *      type: object
+     *      properties:
+     *          nom_article:
+     *              type: string
+     *          prix_article:
+     *              type: number
+     *          url_img_article:
+     *              type: string
+     *          id_categorie:
+     *              type: number
+     *          id_collection:
+     *              type: number
+     */
+
     id = Number()
 
     nom_article = String()

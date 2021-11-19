@@ -1,10 +1,40 @@
 'use strict'
 
-const ArticleCommandeCommande = use('App/Models/ArticleCommandeCommande')
+const ArticleCommande = use('App/Models/ArticleCommande')
 
 class ArtileCommandeController {
+    /**
+     * @swagger
+     * /article_commande:
+     *   get:
+     *     tags:
+     *       - API article & commandes
+     *     summary: -
+     *     responses:
+     *       200:
+     *         description: -
+     */
     async index() { return ArticleCommande.all() }
 
+    /**
+     * @swagger
+     * /article_commande:
+     *   post:
+     *     tags:
+     *       - API article & commandes
+     *     summary: -
+     *     parameters:
+     *         - name: article-commande
+     *           in: body
+     *           required: true
+     *           schema:
+     *              $ref: "#/definitions/ArticleCommande"
+     *     responses:
+     *       201:
+     *         description: -
+     *       500:
+     *         description: -
+     */
     async store({ request, response }) {
         try {
             const articleCommande_ = await ArticleCommande.create({
@@ -19,6 +49,25 @@ class ArtileCommandeController {
         }
     }
 
+    /**
+     * @swagger
+     * /article_commande/{id}:
+     *   get:
+     *     tags:
+     *       - API article & commandes
+     *     summary: -
+     *     parameters:
+     *         - name: id
+     *           desciption: -
+     *           in: path
+     *           schema:
+     *              type: number
+     *     responses:
+     *       200:
+     *         description: -
+     *       400:
+     *         description: -
+     */
     async show({ response, params }) {
         try {
             const articleCommande_ = await ArticleCommande.findOrFail(params.id)
@@ -28,6 +77,30 @@ class ArtileCommandeController {
         }
     }
 
+    /**
+     * @swagger
+     * /article_commande/{id}:
+     *   put:
+     *     tags:
+     *       - API article & commandes
+     *     summary: -
+     *     parameters:
+     *         - name: id
+     *           desciption: -
+     *           in: path
+     *           schema:
+     *              type: number
+     *         - name: article-commande
+     *           in: body
+     *           required: true
+     *           schema:
+     *              $ref: "#/definitions/ArticleCommande"
+     *     responses:
+     *       202:
+     *         description: -
+     *       500:
+     *         description: -
+     */
     async update({ request, response, params }) {
         try {
             const articleCommande_ = await ArticleCommande.findOrFail(params.id)
@@ -42,6 +115,25 @@ class ArtileCommandeController {
         }
     }
 
+    /**
+     * @swagger
+     * /article_commande/{id}:
+     *   delete:
+     *     tags:
+     *       - API article & commandes
+     *     summary: -
+     *     parameters:
+     *         - name: id
+     *           desciption: -
+     *           in: path
+     *           schema:
+     *              type: number
+     *     responses:
+     *       203:
+     *         description: -
+     *       400:
+     *         description: -
+     */
     async destroy({ params, response }) {
         try {
             const articleCommande_ = await ArticleCommande.find(params.id)

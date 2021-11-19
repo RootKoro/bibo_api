@@ -4,6 +4,22 @@
 const Model = use('Model')
 
 class ArticleCommande extends Model {
+    /**
+     * @swagger
+     * definitions:
+     *  ArticleCommande:
+     *      type: object
+     *      properties:
+     *          id_article:
+     *              type: number
+     *          id_commande:
+     *              type: number
+     *          quantite_article_commande:
+     *              type: number
+     *          total:
+     *              type: number
+     */
+
     id = Number()
 
     id_article = Number()

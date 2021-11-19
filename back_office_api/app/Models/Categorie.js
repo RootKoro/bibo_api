@@ -4,6 +4,16 @@
 const Model = use('Model')
 
 class Categorie extends Model {
+    /**
+     * @swagger
+     * definitions:
+     *  Categorie:
+     *      type: object
+     *      properties:
+     *          nom_categorie:
+     *              type: string
+     */
+
     id = Number()
 
     nom_categorie = String()

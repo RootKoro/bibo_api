@@ -4,6 +4,24 @@
 const Model = use('Model')
 
 class Client extends Model {
+    /**
+     * @swagger
+     * definitions:
+     *  Client:
+     *      type: object
+     *      properties:
+     *          nom_client:
+     *              type: string
+     *          prenom_client:
+     *              type: string
+     *          email_client:
+     *              type: string
+     *          tel_client:
+     *              type: string
+     *          adresse_client:
+     *              type: string
+     */
+
     id = Number()
 
     nom_client = String()

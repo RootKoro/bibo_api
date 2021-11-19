@@ -3,8 +3,38 @@
 const Article = use('App/Models/Article')
 
 class ArticleController {
+    /**
+     * @swagger
+     * /article:
+     *   get:
+     *     tags:
+     *       - API article
+     *     summary: retourne tous les articles
+     *     responses:
+     *       200:
+     *         description: tous les articles sont retournes
+     */
     async index() { return Article.all() }
 
+    /**
+     * @swagger
+     * /article:
+     *   post:
+     *     tags:
+     *       - API article
+     *     summary: cree un article
+     *     parameters:
+     *         - name: article
+     *           in: body
+     *           required: true
+     *           schema:
+     *              $ref: "#/definitions/Article"
+     *     responses:
+     *       201:
+     *         description: article enregistre avec succes
+     *       500:
+     *         description: un probleme s'est pose, veuillez ressayer
+     */
     async store({ request, response }) {
         try {
             const article_ = await Article.create({
@@ -20,6 +50,25 @@ class ArticleController {
         }
     }
 
+    /**
+     * @swagger
+     * /article/{id}:
+     *   get:
+     *     tags:
+     *       - API article
+     *     summary: retourne l'article correspondant a l'identifiant
+     *     parameters:
+     *         - name: id
+     *           desciption: identifiant de l'article
+     *           in: path
+     *           schema:
+     *              type: number
+     *     responses:
+     *       200:
+     *         description: article retourne
+     *       400:
+     *         description: article introuvable
+     */
     async show({ response, params }) {
         try {
             const article_ = await Article.findOrFail(params.id)
@@ -29,6 +78,30 @@ class ArticleController {
         }
     }
 
+    /**
+     * @swagger
+     * /article/{id}:
+     *   put:
+     *     tags:
+     *       - API article
+     *     summary: met a jour l'article correspondant a l'identifiant
+     *     parameters:
+     *         - name: id
+     *           desciption: identifiant de l'article
+     *           in: path
+     *           schema:
+     *              type: number
+     *         - name: article
+     *           in: body
+     *           required: true
+     *           schema:
+     *              $ref: "#/definitions/Article"
+     *     responses:
+     *       202:
+     *         description: article mis a jour avec succes
+     *       500:
+     *         description: echec de la mmis a jour, veuillez reessayer
+     */
     async update({ request, response, params }) {
         try {
             const article_ = await Article.findOrFail(params.id)
@@ -44,6 +117,25 @@ class ArticleController {
         }
     }
 
+    /**
+     * @swagger
+     * /article/{id}:
+     *   delete:
+     *     tags:
+     *       - API article
+     *     summary: supprime l'article correspondant a l'identifiant
+     *     parameters:
+     *         - name: id
+     *           desciption: identifiant de l'article
+     *           in: path
+     *           schema:
+     *              type: number
+     *     responses:
+     *       203:
+     *         description: article supprime
+     *       400:
+     *         description: article introuvable
+     */
     async destroy({ params, response }) {
         try {
             const article_ = await Article.find(params.id)

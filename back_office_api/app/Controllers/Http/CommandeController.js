@@ -3,8 +3,38 @@
 const Commande = use('App/Models/Commande')
 
 class CommandeController {
+    /**
+     * @swagger
+     * /commande:
+     *   get:
+     *     tags:
+     *       - API commande
+     *     summary: renvoi toutes les commande
+     *     responses:
+     *       200:
+     *         description: renvoi la liste des commande enregistres
+     */
     async index() { return Commande.all() }
 
+    /**
+     * @swagger
+     * /commande:
+     *   post:
+     *     tags:
+     *       - API commande
+     *     summary: enregistre une nouvelle commande
+     *     parameters:
+     *         - name: commande
+     *           in: body
+     *           required: true
+     *           schema:
+     *              $ref: "#/definitions/Commande"
+     *     responses:
+     *       201:
+     *         description: Commande enregistree avec succes
+     *       500:
+     *         description: une Erreur s'est produite lors de la creation de la commande, verifiez les erreurs
+     */
     async store({ request, response }) {
         try {
             const commande_ = await Commande.create({
@@ -19,6 +49,25 @@ class CommandeController {
         }
     }
 
+    /**
+     * @swagger
+     * /commande/{id}:
+     *   get:
+     *     tags:
+     *       - API commande
+     *     summary: renvois la commande correspondante a l'identifiant
+     *     parameters:
+     *         - name: id
+     *           desciption: identifiant
+     *           in: path
+     *           schema:
+     *              type: number
+     *     responses:
+     *       200:
+     *         description: Commande renvoyee avec succes
+     *       400:
+     *         description: aucune commande ne correspond a cet identifiant
+     */
     async show({ response, params }) {
         try {
             const commande_ = await Commande.findOrFail(params.id)
@@ -28,6 +77,30 @@ class CommandeController {
         }
     }
 
+    /**
+     * @swagger
+     * /commande/{id}:
+     *   put:
+     *     tags:
+     *       - API commande
+     *     summary: met a jour une commande
+     *     parameters:
+     *         - name: id
+     *           desciption: identifiant
+     *           in: path
+     *           schema:
+     *              type: number
+     *         - name: commande
+     *           in: body
+     *           required: true
+     *           schema:
+     *              $ref: "#/definitions/Commande"
+     *     responses:
+     *       202:
+     *         description: commande mis a jour avece succes
+     *       500:
+     *         description: une erreur s'est produite lors de la mise a jour
+     */
     async update({ request, response, params }) {
         try {
             const commande_ = await Commande.findOrFail(params.id)
@@ -42,6 +115,25 @@ class CommandeController {
         }
     }
 
+    /**
+     * @swagger
+     * /commande/{id}:
+     *   delete:
+     *     tags:
+     *       - API commande
+     *     summary: supprime une commande
+     *     parameters:
+     *         - name: id
+     *           desciption: identifiant
+     *           in: path
+     *           schema:
+     *              type: number
+     *     responses:
+     *       203:
+     *         description: commande supprimee avec succes
+     *       400:
+     *         description: aucune commande ne correspond a cet identifiant
+     */
     async destroy({ params, response }) {
         try {
             const commande_ = await Commande.find(params.id)

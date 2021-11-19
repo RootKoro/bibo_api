@@ -4,6 +4,16 @@
 const Model = use('Model')
 
 class Collection extends Model {
+    /**
+     * @swagger
+     * definitions:
+     *  Collection:
+     *      type: object
+     *      properties:
+     *          nom_collection:
+     *              type: string
+     */
+
     id = Number()
 
     nom_collection = String()
