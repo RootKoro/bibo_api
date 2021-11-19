@@ -38,10 +38,8 @@ class CategorieController {
     async store({ request, response }) {
         try {
             const categotie_ = await Categorie.create({ nom_categorie: request.input('nom_categorie') })
-            console.log(response.message)
             return response.status(201).json(categotie_)
         } catch (error) {
-            console.log(error)
             return response.status(500).send(error)
         }
     }
