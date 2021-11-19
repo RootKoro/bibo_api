@@ -37,10 +37,12 @@ class CategorieController {
      */
     async store({ request, response }) {
         try {
-            const categotie_ = await Categorie.create({ nom_categorie: request.input('nom') })
+            const categotie_ = await Categorie.create({ nom_categorie: request.input('nom_categorie') })
+            console.log(response.message)
             return response.status(201).json(categotie_)
         } catch (error) {
-            return response.status(500).send('Stockage impossible, veuillez reessayer!')
+            console.log(error)
+            return response.status(500).send(error)
         }
     }
 
@@ -99,7 +101,7 @@ class CategorieController {
     async update({ request, response, params }) {
         try {
             const categotie_ = await Categorie.findOrFail(params.id)
-            categotie_.nom_categorie = request.input('nom')
+            categotie_.nom_categorie = request.input('nom_categorie')
             categotie_.save()
             return response.status(202).json(categotie_)
         } catch (error) {

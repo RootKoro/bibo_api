@@ -37,7 +37,7 @@ class CollectionController {
      */
     async store({ request, response }) {
         try {
-            const collection_ = await Collection.create({ nom_collection: request.input('nom') })
+            const collection_ = await Collection.create({ nom_collection: request.input('nom_collection') })
             return response.status(201).json(collection_)
         } catch (error) {
             return response.status(500).send('Stockage impossible, veuillez reessayer!')
@@ -99,7 +99,7 @@ class CollectionController {
     async update({ request, response, params }) {
         try {
             const collection_ = await Collection.findOrFail(params.id)
-            collection_.nom_collection = request.input('nom')
+            collection_.nom_collection = request.input('nom_collection')
             collection_.save()
             return response.status(202).json(collection_)
         } catch (error) {

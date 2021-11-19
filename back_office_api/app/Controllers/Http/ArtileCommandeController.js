@@ -38,9 +38,9 @@ class ArtileCommandeController {
     async store({ request, response }) {
         try {
             const articleCommande_ = await ArticleCommande.create({
-                id_article: request.input('ArticleCommande'),
-                id_commande: request.input('commande'),
-                quantite_article_commande: request.input('quantite'),
+                id_article: request.input('id_article'),
+                id_commande: request.input('id_commande'),
+                quantite_article_commande: request.input('quantite_article_commande'),
                 total: request.input('total')
             })
             return response.status(201).json(articleCommande_)
@@ -104,9 +104,9 @@ class ArtileCommandeController {
     async update({ request, response, params }) {
         try {
             const articleCommande_ = await ArticleCommande.findOrFail(params.id)
-            articleCommande_.id_article = request.input('article')
-            articleCommande_.id_commande = request.input('commande')
-            articleCommande_.quantite_article_commande = request.input('quantite')
+            articleCommande_.id_article = request.input('id_article')
+            articleCommande_.id_commande = request.input('id_commande')
+            articleCommande_.quantite_article_commande = request.input('quantite_article_commande')
             articleCommande_.total = request.input('total')
             articleCommande_.save()
             return response.status(202).json(articleCommande_)

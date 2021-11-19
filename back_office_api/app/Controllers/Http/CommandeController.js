@@ -38,9 +38,9 @@ class CommandeController {
     async store({ request, response }) {
         try {
             const commande_ = await Commande.create({
-                total_commande: request.input('total'),
-                mode_paiement: request.input('mode de paiement'),
-                id_client: request.input('client'),
+                total_commande: request.input('total_commande'),
+                mode_paiement: request.input('mode_paiement'),
+                id_client: request.input('id_client'),
                 status: request.input('status')
             })
             return response.status(201).json(commande_)
@@ -104,10 +104,10 @@ class CommandeController {
     async update({ request, response, params }) {
         try {
             const commande_ = await Commande.findOrFail(params.id)
-            commande_.total_commande = request.input('nom')
-            commande_.mode_paiement = request.input('prix')
-            commande_.id_client = request.input('image')
-            commande_.status = request.input('categorie')
+            commande_.total_commande = request.input('total_commande')
+            commande_.mode_paiement = request.input('mode_paiement')
+            commande_.id_client = request.input('id_client')
+            commande_.status = request.input('status')
             commande_.save()
             return response.status(202).json(commande_)
         } catch (error) {

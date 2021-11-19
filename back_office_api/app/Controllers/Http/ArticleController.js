@@ -38,11 +38,11 @@ class ArticleController {
     async store({ request, response }) {
         try {
             const article_ = await Article.create({
-                nom_article: request.input('nom'),
-                prix_article: request.input('prix'),
-                url_img_article: request.input('image'),
-                id_collection: request.input('collecetion'),
-                id_categorie: request.input('categorie')
+                nom_article: request.input('nom_article'),
+                prix_article: request.input('prix_article'),
+                url_img_article: request.input('url_img_article'),
+                id_collection: request.input('id_collection'),
+                id_categorie: request.input('id_categorie')
             })
             return response.status(201).json(article_)
         } catch (error) {
@@ -105,11 +105,11 @@ class ArticleController {
     async update({ request, response, params }) {
         try {
             const article_ = await Article.findOrFail(params.id)
-            article_.nom_article = request.input('nom')
-            article_.prix_article = request.input('prix')
-            article_.url_img_article = request.input('image')
-            article_.id_categorie = request.input('categorie')
-            article_.id_collection = request.input('collection')
+            article_.nom_article = request.input('nom_article')
+            article_.prix_article = request.input('prix_article')
+            article_.url_img_article = request.input('url_img_article')
+            article_.id_categorie = request.input('id_categorie')
+            article_.id_collection = request.input('id_collection')
             article_.save()
             return response.status(202).json(article_)
         } catch (error) {

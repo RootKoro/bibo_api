@@ -38,11 +38,11 @@ class ClientController {
     async store({ request, response }) {
         try {
             const client_ = await Client.create({
-                nom_client: request.input('nom'),
-                prenom_client: request.input('prenom'),
-                email_client: request.input('email'),
-                tel_client: request.input('telephone'),
-                adress_client: request.input('adresse')
+                nom_client: request.input('nom_client'),
+                prenom_client: request.input('prenom_client'),
+                email_client: request.input('email_client'),
+                tel_client: request.input('tel_client'),
+                adress_client: request.input('adress_client')
             })
             return response.status(201).json(client_)
         } catch (error) {
@@ -105,11 +105,11 @@ class ClientController {
     async update({ request, response, params }) {
         try {
             const client_ = await Client.findOrFail(params.id)
-            client_.nom_client = request.input('nom')
-            client_.prenom_client = request.input('prenom')
-            client_.email_client = request.input('email')
-            client_.tel_client = request.input('telephone')
-            client_.adresse_client = request.input('adresse')
+            client_.nom_client = request.input('nom_client')
+            client_.prenom_client = request.input('prenom_client')
+            client_.email_client = request.input('email_client')
+            client_.tel_client = request.input('tel_client')
+            client_.adresse_client = request.input('adresse_client')
             client_.save()
             return response.status(202).json(client_)
         } catch (error) {
