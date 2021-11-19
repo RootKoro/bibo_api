@@ -18,14 +18,14 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
-/* Route.resource('/article', 'ArticleController').apiOnly()
+Route.resource('/article', 'ArticleController').apiOnly()
 Route.resource('/article_commande', 'ArticleCommandeController').apiOnly()
 Route.resource('/commande', 'CommandeController').apiOnly()
 Route.resource('/categorie', 'CategorieController').apiOnly()
 Route.resource('/client', 'ClientController').apiOnly()
-Route.resource('/collection', 'CollectionController').apiOnly() */
+Route.resource('/collection', 'CollectionController').apiOnly()
 
-Route.get('/article', 'PostController.index')
+/* Route.get('/article', 'PostController.index')
 Route.get('/article/:id', 'PostController.show')
 Route.post('/article', 'PostController.store')
 Route.put('/article/:id', 'PostController.update')
@@ -59,4 +59,4 @@ Route.get('/collection', 'PostController.index')
 Route.get('/collection/:id', 'PostController.show')
 Route.post('/collection', 'PostController.store')
 Route.put('/collection/:id', 'PostController.update')
-Route.delete('/collection/:id', 'PostController.destroy')
+Route.delete('/collection/:id', 'PostController.destroy') */

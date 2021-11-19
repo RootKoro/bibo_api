@@ -9,10 +9,10 @@ class ArtileCommandeController {
      *   get:
      *     tags:
      *       - API article & commandes
-     *     summary: -
+     *     summary: nothing
      *     responses:
      *       200:
-     *         description: -
+     *         description: nothing
      */
     async index() { return ArticleCommande.all() }
 
@@ -22,7 +22,7 @@ class ArtileCommandeController {
      *   post:
      *     tags:
      *       - API article & commandes
-     *     summary: -
+     *     summary: nothing
      *     parameters:
      *         - name: article-commande
      *           in: body
@@ -31,9 +31,9 @@ class ArtileCommandeController {
      *              $ref: "#/definitions/ArticleCommande"
      *     responses:
      *       201:
-     *         description: -
+     *         description: nothing
      *       500:
-     *         description: -
+     *         description: nothing
      */
     async store({ request, response }) {
         try {
@@ -55,18 +55,18 @@ class ArtileCommandeController {
      *   get:
      *     tags:
      *       - API article & commandes
-     *     summary: -
+     *     summary: nothing
      *     parameters:
      *         - name: id
-     *           desciption: -
+     *           desciption: nothing
      *           in: path
      *           schema:
      *              type: number
      *     responses:
      *       200:
-     *         description: -
+     *         description: nothing
      *       400:
-     *         description: -
+     *         description: nothing
      */
     async show({ response, params }) {
         try {
@@ -83,10 +83,10 @@ class ArtileCommandeController {
      *   put:
      *     tags:
      *       - API article & commandes
-     *     summary: -
+     *     summary: nothing
      *     parameters:
      *         - name: id
-     *           desciption: -
+     *           desciption: nothing
      *           in: path
      *           schema:
      *              type: number
@@ -97,9 +97,9 @@ class ArtileCommandeController {
      *              $ref: "#/definitions/ArticleCommande"
      *     responses:
      *       202:
-     *         description: -
+     *         description: nothing
      *       500:
-     *         description: -
+     *         description: nothing
      */
     async update({ request, response, params }) {
         try {
@@ -121,18 +121,18 @@ class ArtileCommandeController {
      *   delete:
      *     tags:
      *       - API article & commandes
-     *     summary: -
+     *     summary: nothing
      *     parameters:
      *         - name: id
-     *           desciption: -
+     *           desciption: nothing
      *           in: path
      *           schema:
      *              type: number
      *     responses:
      *       203:
-     *         description: -
+     *         description: nothing
      *       400:
-     *         description: -
+     *         description: nothing
      */
     async destroy({ params, response }) {
         try {
