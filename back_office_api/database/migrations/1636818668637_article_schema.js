@@ -10,10 +10,9 @@ class ArticleSchema extends Schema {
             table.string('nom_article', 100).notNullable().unique()
             table.integer('prix_article').unsigned().notNullable()
             table.string('url_img_article', 100).notNullable().unique()
+            table.string('description', 255).notNullable()
             table.integer('id_categorie').unsigned().notNullable()
-            table.integer('id_collection').unsigned().notNullable()
             table.foreign('id_categorie').references('categories.id')
-            table.foreign('id_collection').references('collections.id')
             table.timestamps()
         })
     }
