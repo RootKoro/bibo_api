@@ -15,7 +15,7 @@ class ArticleCollectionController {
      * /article_collection:
      *   get:
      *     tags:
-     *       - API article & commands
+     *       - API article & collection
      *     summary: nothing
      *     responses:
      *       200:

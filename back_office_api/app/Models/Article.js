@@ -18,8 +18,6 @@ class Article extends Model {
      *              type: string
      *          id_categorie:
      *              type: number
-     *          id_collection:
-     *              type: number
      */
 
     id = Number()
@@ -31,8 +29,6 @@ class Article extends Model {
     url_img_article = String()
 
     id_categorie = Number()
-
-    id_collection = Number()
 
     createdAt = Date()
 
