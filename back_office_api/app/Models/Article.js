@@ -25,6 +25,8 @@ class Article extends Model {
     nom_article = String()
 
     prix_article = Number()
+  
+    img_article = String()
 
     url_img_article = String()
 
