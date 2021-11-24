@@ -37,7 +37,7 @@ class ArticleController {
      *         description: un probleme s'est pose, veuillez ressayer
      */
     async store({ request, response }) {
-        const image = request.file('url_img_article')
+        const image = request.file('img_article')
         try {
             const article_ = await Article.create({
                 nom_article: request.input('nom_article'),
@@ -46,8 +46,11 @@ class ArticleController {
                 id_categorie: request.input('id_categorie')
             })
             if(article_){
-            this.saveFile(image, article_)
-            return response.status(201).json(article_)
+              this.saveFile(image, article_)
+              const article___ = await Article.findOrFail(article.$attributes.id)
+              article___.url_img_article = "./public/categorie/" + image.clientName;
+              article___.save()
+              return response.status(201).json(article_)
             }
         } catch (error) {
             console.log(error)
@@ -58,9 +61,9 @@ class ArticleController {
     //function to save the image
     async saveFile(image, article) {   
         if(image){
-            image.clientName = article.$attributes.id_categorie + '#' + article.$attributes.id + '.jpg';
+            image.clientName = article.$attributes.id_categorie + '#' + article.$attributes.nom_article + '.jpg';
             const article_ = await Article.findOrFail(article.$attributes.id)
-            article_.url_img_article = image.clientName;
+            article_.img_article = image.clientName;
             article_.save()
             await image.move('./public/categorie/')    
         }
