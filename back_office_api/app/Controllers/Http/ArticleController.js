@@ -59,7 +59,7 @@ class ArticleController {
     //function to save the image
     async saveFile(image, article) {
         if (image) {
-            image.clientName = article.$attributes.id_categorie + '#' + article.$attributes.nom_article + '.jpg'
+            image.clientName = article.$attributes.id_categorie + '#' + article.$attributes.nom_article + '.webp'
             const article_ = await Article.findOrFail(article.$attributes.id)
             article_.img_article = image.clientName;
             article_.save()
