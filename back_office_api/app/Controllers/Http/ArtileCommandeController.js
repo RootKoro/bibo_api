@@ -138,7 +138,7 @@ class ArtileCommandeController {
         try {
             const articleCommande_ = await ArticleCommande.find(params.id)
             await articleCommande_.delete()
-            return response.redirect('/ArticleCommande')
+            return response.status(203).send('suppression reussie')
         } catch (error) {
             return response.status(500).send('Aucun resultat ne correspond a cet id')
         }

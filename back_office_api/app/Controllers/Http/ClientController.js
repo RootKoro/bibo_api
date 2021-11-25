@@ -140,7 +140,7 @@ class ClientController {
         try {
             const client_ = await Client.find(params.id)
             await client_.delete()
-            return response.redirect('/Clients')
+            return response.status(203).send('suppression reussie')
         } catch (error) {
             return response.status(500).send('Aucun resultat ne correspond a cet id')
         }

@@ -205,7 +205,7 @@ class ArticleCollectionController {
         try {
             const article_collection_ = await ArticleCollection.find(params.id)
             await article_collection_.delete()
-            return response.redirect('/article_commande')
+            return response.status(203).send('suppression reussie')
         } catch (error) {
             return response.status(500).send('Aucun resultat ne correspond a cet id')
         }

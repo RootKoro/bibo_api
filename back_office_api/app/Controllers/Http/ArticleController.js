@@ -36,17 +36,45 @@ class ArticleController {
      *         description: un probleme s'est pose, veuillez ressayer
      */
     async store({ request, response }) {
+        const image = request.file('img_article')
         try {
             const article_ = await Article.create({
                 nom_article: request.input('nom_article'),
                 prix_article: request.input('prix_article'),
-                url_img_article: request.input('url_img_article'),
-                id_collection: request.input('id_collection'),
                 id_categorie: request.input('id_categorie')
             })
+            if (article_) {
+                this.saveFile(image, article_)
+                this.saveUrl(image, article_)
+                return response.status(201).json(article_)
+            }
             return response.status(201).json(article_)
         } catch (error) {
+            console.log(error.message)
             return response.status(500).send('Stockage impossible, veuillez reessayer!')
+        }
+    }
+
+    //function to save the image
+    async saveFile(image, article) {
+        if (image) {
+            image.clientName = article.$attributes.id_categorie + '#' + article.$attributes.nom_article + '.jpg';
+            const article_ = await Article.findOrFail(article.$attributes.id)
+            article_.img_article = image.clientName;
+            article_.save()
+            await image.move('./public/categorie/')
+        } else {
+            console.log(image.error())
+        }
+    }
+
+    async saveUrl(image, article) {
+        if (image) {
+            const article_ = await Article.findOrFail(article.$attributes.id)
+            article_.url_img_article = "./public/categorie/" + image.clientName
+            article_.save()
+        } else {
+            console.log(image.error())
         }
     }
 
@@ -140,7 +168,7 @@ class ArticleController {
         try {
             const article_ = await Article.find(params.id)
             await article_.delete()
-            return response.redirect('/article')
+            return response.status(203).send('suppression reussie')
         } catch (error) {
             return response.status(500).send('Aucun resultat ne correspond a cet id')
         }

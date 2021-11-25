@@ -130,7 +130,7 @@ class CollectionController {
         try {
             const collection_ = await Collection.find(params.id)
             await collection_.delete()
-            return response.redirect('/collection')
+            return response.status(203).send('suppression reussie')
         } catch (error) {
             return response.status(500).send('Aucun resultat ne correspond a cet id')
         }

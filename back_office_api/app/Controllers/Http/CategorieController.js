@@ -130,7 +130,7 @@ class CategorieController {
         try {
             const categotie_ = await Categorie.find(params.id)
             await categotie_.delete()
-            return response.redirect('/Categorie')
+            return response.status(203).send('suppression reussie')
         } catch (error) {
             return response.status(500).send('Aucun resultat ne correspond a cet id')
         }
