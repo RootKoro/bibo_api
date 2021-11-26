@@ -10,9 +10,7 @@ class Client extends Model {
      *  Client:
      *      type: object
      *      properties:
-     *          nom_client:
-     *              type: string
-     *          prenom_client:
+     *          prenom_nom_client:
      *              type: string
      *          email_client:
      *              type: string
@@ -24,9 +22,7 @@ class Client extends Model {
 
     id = Number()
 
-    nom_client = String()
-
-    prenom_client = String()
+    prenom_nom_client = String()
 
     email_client = String()
 

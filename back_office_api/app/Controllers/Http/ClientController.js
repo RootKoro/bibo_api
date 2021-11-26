@@ -38,14 +38,15 @@ class ClientController {
     async store({ request, response }) {
         try {
             const client_ = await Client.create({
-                nom_client: request.input('nom_client'),
-                prenom_client: request.input('prenom_client'),
+                prenom_nom_client: request.input('prenom_nom_client'),
                 email_client: request.input('email_client'),
                 tel_client: request.input('tel_client'),
-                adress_client: request.input('adress_client')
+                adresse_client: request.input('adresse_client')
             })
+            console.log(request)
             return response.status(201).json(client_)
         } catch (error) {
+            console.log(error)
             return response.status(500).send('Stockage impossible, veuillez reessayer!')
         }
     }
@@ -105,8 +106,7 @@ class ClientController {
     async update({ request, response, params }) {
         try {
             const client_ = await Client.findOrFail(params.id)
-            client_.nom_client = request.input('nom_client')
-            client_.prenom_client = request.input('prenom_client')
+            client_.prenom_nom_client = request.input('nom_client')
             client_.email_client = request.input('email_client')
             client_.tel_client = request.input('tel_client')
             client_.adresse_client = request.input('adresse_client')

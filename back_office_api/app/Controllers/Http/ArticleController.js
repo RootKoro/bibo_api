@@ -1,7 +1,7 @@
 'use strict'
 const Article = use('App/Models/Article')
-
-const url = '/categorie/'
+const Collection = use('App/Models/Collection')
+const ArticleCollection = use('App/Models/ArticleCollection')
 
 class ArticleController {
     /**
@@ -47,7 +47,11 @@ class ArticleController {
             if (article_) {
                 this.saveFile(image, article_)
                 this.saveUrl(image, article_)
-                return response.status(201).json(article_)
+                const resp = this.article_collection_insertion(article_, request.input('id_collection'))
+                if (resp === "collection not found") {
+                    console.log(resp)
+                    return resp
+                } else return response.status(201).json(article_)
             }
             return response.status(201).json(article_)
         } catch (error) {
@@ -58,24 +62,41 @@ class ArticleController {
 
     //function to save the image
     async saveFile(image, article) {
-        if (image) {
+        try {
             image.clientName = article.$attributes.id_categorie + '#' + article.$attributes.nom_article + '.webp'
             const article_ = await Article.findOrFail(article.$attributes.id)
             article_.img_article = image.clientName;
             article_.save()
             await image.move('./public/categorie/')
-        } else {
-            console.log(image.error())
+        } catch (error) {
+            console.log(error)
         }
     }
 
     async saveUrl(image, article) {
-        if (image) {
+        try {
             const article_ = await Article.findOrFail(article.$attributes.id)
             article_.url_img_article = "./public/categorie/" + image.clientName
             article_.save()
-        } else {
-            console.log(image.error())
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async article_collection_insertion(article, integer) {
+        try {
+            const collection_ = await Collection.findOrFail(integer)
+            if (collection_) {
+                const article_collection_ = await ArticleCollection.create({
+                    id_article: article.$attributes.id,
+                    id_collection: integer
+                })
+                return article_collection_
+            } else {
+                return "collection not found!"
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 

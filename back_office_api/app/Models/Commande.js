@@ -10,6 +10,18 @@ class Commande extends Model {
      *  Commande:
      *      type: object
      *      properties:
+     *          articles:
+     *              type: array
+     *              items:
+     *                  type: object
+     *                  properties:
+     *                      id:
+     *                          type: integer
+     *                      quantite:
+     *                          type: integer
+     *                  required:
+     *                      - id
+     *                      - quantite
      *          total_commande:
      *              type: number
      *          mode_paiement:
@@ -17,7 +29,7 @@ class Commande extends Model {
      *          id_client:
      *              type: number
      *          status:
-     *              type: boolean
+     *              type: string
      */
 
     id = Number()
@@ -28,7 +40,7 @@ class Commande extends Model {
 
     id_client = Number()
 
-    status = Boolean()
+    status = String()
 
     createdAt = Date()
 

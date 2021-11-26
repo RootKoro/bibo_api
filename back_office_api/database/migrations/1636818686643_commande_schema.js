@@ -12,7 +12,7 @@ class CommandeSchema extends Schema {
             table.string('mode_paiement', 100).notNullable()
             table.integer('id_client').unsigned().notNullable()
             table.foreign('id_client').references('clients.id')
-            table.boolean('status').notNullable()
+            table.string('status').notNullable()
         })
     }
 

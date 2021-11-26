@@ -14,9 +14,11 @@ class Article extends Model {
      *              type: string
      *          prix_article:
      *              type: number
-     *          url_img_article:
+     *          img_article:
      *              type: string
      *          id_categorie:
+     *              type: number
+     *          id_collection:
      *              type: number
      */
 
@@ -25,8 +27,6 @@ class Article extends Model {
     nom_article = String()
 
     prix_article = Number()
-  
-    img_article = String()
 
     img_article = String()
 

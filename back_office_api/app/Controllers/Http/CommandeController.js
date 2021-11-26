@@ -1,6 +1,7 @@
 'use strict'
 
 const Commande = use('App/Models/Commande')
+const ArticleCommande = use('App/Models/ArticleCommande')
 
 class CommandeController {
     /**
@@ -43,6 +44,18 @@ class CommandeController {
                 id_client: request.input('id_client'),
                 status: request.input('status')
             })
+            try {
+                const articles_ = await request.input('articles')
+                articles_.forEach(async function(item) {
+                    await ArticleCommande.create({
+                        id_article: item.id,
+                        quantite_article_commande: item.quantite,
+                        id_commande: commande_.$attributes.id
+                    })
+                })
+            } catch (error) {
+                return error
+            }
             return response.status(201).json(commande_)
         } catch (error) {
             return response.status(500).send('Stockage impossible, veuillez reessayer!')
