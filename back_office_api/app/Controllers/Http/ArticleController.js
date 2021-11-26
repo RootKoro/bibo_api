@@ -42,7 +42,8 @@ class ArticleController {
             const article_ = await Article.create({
                 nom_article: request.input('nom_article'),
                 prix_article: request.input('prix_article'),
-                id_categorie: request.input('id_categorie')
+                id_categorie: request.input('id_categorie'),
+                description: request.input('description')
             })
             if (article_) {
                 this.saveFile(image, article_)
@@ -159,7 +160,7 @@ class ArticleController {
             article_.prix_article = request.input('prix_article')
             article_.url_img_article = request.input('url_img_article')
             article_.id_categorie = request.input('id_categorie')
-            article_.id_collection = request.input('id_collection')
+            article_.description = request.input('description')
             article_.save()
             return response.status(202).json(article_)
         } catch (error) {
