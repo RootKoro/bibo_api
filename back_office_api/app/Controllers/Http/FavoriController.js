@@ -205,7 +205,7 @@ class FavoriController {
         try {
             const favori_ = await Favori.find(params.id)
             await favori_.delete()
-            return response.redirect('/favori')
+            return response.status(203).send('suppression reussie')
         } catch (error) {
             return response.status(400).send('Aucun resultat ne correspond a cet id')
         }
